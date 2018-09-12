@@ -1,0 +1,12 @@
+{% extends "./layout.html" %}
+{% block body %}
+    <div class="container">
+        <h1>Success! Welcome, {{ user.f_name }} !</h1>
+        <p>Successfully registered (or logged in)!</p>
+        <form action="{% url 'index:logout' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Logout">
+        </form>
+    </div>
+{% endblock %}
+

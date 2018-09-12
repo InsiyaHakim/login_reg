@@ -1,0 +1,54 @@
+{% extends "./layout.html" %}
+{% block body %}
+    <div class="container">
+    <div class="form-container">
+        {% if registration_error %}
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endif %}
+        <h1>Register</h1>
+        <form action="{% url 'index:create' %}" method="POST">
+            {% csrf_token %}
+            <label for="f_name">First Name</label>
+            <input type="text" name="f_name">
+            <label for="l_name">Last Name</label>
+            <input type="text" name="l_name">
+            <label for="b_day">Birthday</label>
+            <input type="date" name="b_day">
+            <label for="email">Email</label>
+            <input type="email" name="email">
+            <label for="password">Password</label>
+            <input type="password" name="password">
+            <label for="confirm">Confirm Password</label>
+            <input type="password" name="confirm">
+            <input type="submit" value="Register">
+        </form>
+    </div>
+    <div class="form-container">
+        {% if login_error %}
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endif %}
+        <h1>Login</h1>
+        <form action="{% url 'index:login' %}" method="POST">
+            {% csrf_token %}
+            <label for="email">Email</label>
+            <input type="text" name="email">
+            <label for="password">Password</label>
+            <input type="password" name="password">
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    </div>
+{% endblock %}
+
